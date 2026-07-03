@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlowBoard | Project Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section id="auth-screen" class="auth-screen">
+      <div class="auth-card">
+        <div class="auth-header">
+          <p class="eyebrow">Project control center</p>
+          <h2 id="auth-title">Login to FlowBoard</h2>
+          <p id="auth-subtitle">Access your workspace and keep every task moving.</p>
+        </div>
+
+        <form id="auth-form">
+          <label>
+            Username or email
+            <input id="auth-username" type="text" placeholder="alex@flowboard.com" required />
+          </label>
+          <label>
+            Password
+            <input id="auth-password" type="password" placeholder="Enter password" required />
+          </label>
+          <button type="submit" id="auth-submit" class="btn btn-primary">Login</button>
+          <p class="auth-switch">
+            <span id="auth-switch-text">New here?</span>
+            <button type="button" id="toggle-auth-mode" class="text-btn">Create account</button>
+          </p>
+          <p id="auth-message" class="auth-message"></p>
+        </form>
+      </div>
+    </section>
+
+    <div id="app-shell" class="app-shell hidden">
+      <header class="hero-card">
+        <div>
+          <p class="eyebrow">Smart workspace</p>
+          <h1>FlowBoard</h1>
+          <p class="subtitle">
+            Organize every project task in a calm, visual dashboard built for fast execution.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <div class="hero-badge">
+            <span>✓</span>
+            <strong>Live task tracking</strong>
+          </div>
+          <button id="logout-btn" class="btn btn-secondary">Logout</button>
+        </div>
+      </header>
+
+      <main class="main-grid">
+        <section class="panel form-panel">
+          <div class="panel-heading">
+            <h2>Create task</h2>
+            <p>Capture ideas and turn them into action.</p>
+          </div>
+
+          <form id="task-form">
+            <label>
+              Task title
+              <input id="task-title" name="title" type="text" placeholder="Design new landing page" required />
+            </label>
+
+            <label>
+              Description
+              <textarea id="task-description" name="description" rows="3" placeholder="Outline key deliverables..."></textarea>
+            </label>
+
+            <div class="form-row">
+              <label>
+                Due date
+                <input id="task-due" name="dueDate" type="date" />
+              </label>
+              <label>
+                Priority
+                <select id="task-priority" name="priority">
+                  <option value="Low">Low</option>
+                  <option value="Medium" selected>Medium</option>
+                  <option value="High">High</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label>
+                Category
+                <input id="task-category" name="category" type="text" placeholder="Design" />
+              </label>
+              <label>
+                Status
+                <select id="task-status" name="status">
+                  <option value="todo">To Do</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="review">Review</option>
+                  <option value="done">Done</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Save task</button>
+              <button type="button" id="cancel-edit" class="btn btn-secondary">Cancel edit</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel workspace-panel">
+          <div class="stats-grid" id="stats-grid"></div>
+
+          <div class="toolbar">
+            <input id="search-input" type="text" placeholder="Search tasks" />
+            <select id="filter-status">
+              <option value="all">All statuses</option>
+              <option value="todo">To Do</option>
+              <option value="in-progress">In Progress</option>
+              <option value="review">Review</option>
+              <option value="done">Done</option>
+            </select>
+            <select id="filter-priority">
+              <option value="all">All priorities</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+
+          <div class="board" id="board"></div>
+        </section>
+      </main>
+
+      <section class="panel feed-panel">
+        <div class="panel-heading">
+          <h2>Live activity</h2>
+          <p>Recent updates across your projects.</p>
+        </div>
+        <ul id="activity-list" class="activity-list"></ul>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
